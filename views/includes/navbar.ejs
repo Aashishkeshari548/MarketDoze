@@ -1,0 +1,98 @@
+<nav class="navbar   bg-body-tertiary fixed-top">
+  <div class="container-fluid bg-body-tertiary \\\\">
+    <a class="navbar-brand  img-Navbar" href="#">
+      <p class="navbar-brand img-Navbar"></p>
+    </a>
+    <img width="60px"height="60px" style="border:1px solid black"  src="public/MarketDoze.jpg" alt="no">
+    <a class="navbar-brand mb-3" href="#">
+     MARKET DOZE</a>
+   <!-- ________________________ -->
+   <form     class="d-flex mt-1 col-5 offset-3" role="search">
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="Enter Location"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">MARKETDOZE_BAR</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/listings">All Listings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/listings/new">Add new Listing</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Dropdown for User
+            </a>
+            <ul class="dropdown-menu">
+              <% if(!currUser){ %>
+
+              <li>
+                <a class="dropdown-item" href="/signup"
+                  >signup for House_Owners</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="/login"
+                  >login for House_Owners</a
+                >
+              </li>
+              <%} %>
+
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <% if(currUser){%>
+              <li>
+                <a class="dropdown-item" href="/logout"
+                  >logout for House_Owners</a
+                >
+              </li>
+              <%}%>
+            </ul>
+          </li>
+        </ul>
+       
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- _______________________________________________________ -->
