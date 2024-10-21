@@ -1,14 +1,14 @@
 <% layout('/layouts/boilerplate') -%>
 <body>
  
-  <h3>House_Owners of your City</h3>
+  <h3>influencers</h3>
   <!-- <form method="GET" action="/listings/new">
       <button>New Listing Create</button>
     </form> -->
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-    <% for(listing of allListing){%>
+    <% for(listing of allListing2){%>
   
-    <a href="/listings/<%=listing._id%>" class="listing-link">
+    <a href="/listing2/<%=listing._id%>" class="listing-link">
       <div class="card listing-card">
         <img
           src="<%=listing.image%>"
@@ -18,8 +18,9 @@
         />  <div class="card-img-overlay"></div>
         <div class="card-body">
           <p class="card-text">
-            <b><%=listing.title%></b> <br />
-            &#8377;<%=listing.price.toLocaleString("en-IN")%>/night
+            <b><%=listing.influencerName%></b> <br />
+            <b>followers:<%=listing.followers%></b><br>
+            &#8377;<%=listing.price.toLocaleString("en-IN")%>/advertisements
           </p>
         </div>
       </div>

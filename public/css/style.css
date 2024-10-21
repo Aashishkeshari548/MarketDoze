@@ -110,3 +110,162 @@ a .img-Navbar{
   padding-left: 0;
   padding-right: 0;
 }
+
+/* mainHome______________ */
+card-title1{
+color: antiquewhite !important;
+}
+.aboutUs:hover{
+  text-shadow: 2px 2px 4px red;
+}
+.active:hover{
+  text-shadow: 2px 2px 4px red;
+}
+.nav-link:hover{
+  text-shadow: 2px 2px 4px red;     
+}
+.mainbody{
+
+  background-color: #ede8f5!important;
+}
+.homeNav {
+  margin-top: 5px  !important;
+  margin-left: 3px  !important;
+  margin-right: 3px  !important;
+height:100px !important;
+
+}
+.homeNav:hover{
+  box-shadow: #ede8f5;
+}
+.largelogo{
+  /* margin-top: 1px  !important; */
+border-radius: 10px;
+}
+
+#aboutUs{
+  /* padding-left: 600px; */
+.video{
+  padding-left: 100px;
+}
+
+.aboutborder{
+  width: 100%;
+
+  border: 1px solid blue;}
+
+}
+.paraAbout{
+margin-left: 20px;
+margin-right: 20px;
+display: flex;
+}
+.maincard{
+background-color: aqua !important;
+}
+.aboutUsImag{
+  margin-left: 20px;
+padding-right: 10px;
+border-radius: 20px;
+}
+
+.Services{
+  width: 300px;
+  height: 500px;
+  /* border: 1px solid blue; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+border-radius: 20px; ;
+}
+.mainService{
+  display:flex;
+  justify-content: space-evenly;
+
+}
+.Services:hover{
+  box-shadow: rgba(130, 85, 85, 0.25) 0px 30px 60px -12px inset, rgba(184, 162, 162, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: 10px 10px 5px lightblue;
+  background-color: rgb(141, 131, 128);
+}
+.ourservice{
+  padding-left: 20px;
+}
+.pricing-card {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pricing-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.features {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.features li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.buy-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* marquee css */
+
+.marquee {
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Marquee Content */
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 12s linear infinite;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Icon Styling */
+.marquee-content i {
+  margin-right: 15px;
+  color: #ffd700;
+}
+
+/* Hover Effect */
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+
+
+

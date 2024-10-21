@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
+const Listing2 = require("./models/listing2.js");
+
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
@@ -15,16 +17,19 @@ const session = require("express-session");
 var flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const User= require("./models/user.js");
-const influencer= require("./models/influencer.js");
+const User = require("./models/user.js");
+const influencer = require("./models/influencer.js");
 
-const userRouter= require("./Routes/user.js");
-const influencerRouter= require("./Routes/influencer.js");
+const userRouter = require("./Routes/user.js");
+const influencerRouter = require("./Routes/influencer.js");
 const expressError = require("./utils/expressError.js");
 
-
-const { isLoggedIn,isOwner,validatelisting,validateReview} = require("./middleware.js");
-
+const {
+  isLoggedIn,
+  isOwner,
+  validatelisting,
+  validateReview,
+} = require("./middleware.js");
 
 const sessonOptions = {
   secret: "mysupercreadecod",
@@ -61,9 +66,6 @@ app.get("/", (req, res) => {
   res.send("hello i am root");
 });
 
-
-
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
@@ -75,18 +77,14 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currUser = req.user;//navbar me use hua hai
+  res.locals.currUser = req.user; //navbar me use hua hai
 
   next();
 });
 //_______User signup__________________________________________________________________
 
-
- app.use("/",userRouter);
- app.use("/",influencerRouter);
-
-
-
+app.use("/", userRouter);
+app.use("/", influencerRouter);
 
 app.get(
   "/listings",
@@ -95,10 +93,34 @@ app.get(
     res.render("listings/index.ejs", { allListing });
   })
 );
+// Listing2_______________________________________________________________________________________________________________________
+app.get(
+  "/listing2",
+  async(req, res) => {
+    const allListing2 = await Listing2.find({});
+    res.render("listing2/index2.ejs", { allListing2 });
+  });
+  // show routes______
+  app.get(
+    "/listing2/:id",
+    wrapAsync(async (req, res) => {
+      const { id } = req.params;
+      const listing = await Listing2.findById(id)
+        .populate("reviews")
+        .populate("owner");
+      if (!listing) {
+        req.flash("error", "Listing you request does not exist");
+        res.redirect("/listing2");
+      }
+      console.log(listing);
+      res.render("listing2/show2.ejs", { listing });
+    })
+  );
 
 // new Routes_________
 app.get(
-  "/listings/new",isLoggedIn,
+  "/listings/new",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     res.render("listings/new.ejs");
   })
@@ -106,10 +128,10 @@ app.get(
 
 // create Routes________
 app.post(
-  "/listings",isLoggedIn,
+  "/listings",
+  isLoggedIn,
 
   wrapAsync(async (req, res, next) => {
-  
     const newListing = new Listing(req.body.listing);
     console.log(req.body.listing);
     newListing.owner = req.user._id;
@@ -123,21 +145,23 @@ app.get(
   "/listings/:id",
   wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const listing = await Listing.findById(id).populate("reviews").populate("owner");
+    const listing = await Listing.findById(id)
+      .populate("reviews")
+      .populate("owner");
     if (!listing) {
       req.flash("error", "Listing you request does not exist");
       res.redirect("/listings");
     }
-    console.log(listing)
+    console.log(listing);
     res.render("listings/show.ejs", { listing });
   })
 );
 
-
-
 // Edit Routes____________
 app.get(
-  "/listings/:id/edit",isLoggedIn,isOwner,
+  "/listings/:id/edit",
+  isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id);
@@ -151,7 +175,9 @@ app.get(
 
 // UPdate Routes________________
 app.put(
-  "/listings/:id",isLoggedIn,isOwner,
+  "/listings/:id",
+  isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res, next) => {
     const { id } = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing });
@@ -162,7 +188,9 @@ app.put(
 
 // delete Routes__________________
 app.delete(
-  "/listings/:id",isLoggedIn,isOwner,
+  "/listings/:id",
+  isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const deletedListing = await Listing.findByIdAndDelete(id);
@@ -172,6 +200,13 @@ app.delete(
     res.redirect("/listings");
   })
 );
+
+// __________________________________________________________________________
+
+app.get("/Home", async (req, res) => {
+  res.render("mainHome.ejs");
+});
+
 //__________________________________________________________________________________________________________________
 //reviews_
 //post review routes_____________________
