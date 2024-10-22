@@ -1,5 +1,92 @@
 const sampleListings2 = [
-    {
+  {
+    influencerName: "Saurabh.prayagi",
+    followers:"200k",
+    followings:"20",
+  description:
+    "Ajey Nagar :With 20.8 million followers, Ajey has built his following on funny skits and reaction videos. The popular streamer also produces content around gaming.",
+  image:
+    "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729577651/nw3jtlerekglosifvnen.png",
+
+  price: 100,
+  
+  country: "prayagraj, India",
+  instaUrl:"https://www.instagram.com/p/DAZ2YSrPQsb/?igsh=YzAyMDM1MGJkZA%3D%3D",
+  youtubeUrl:"#"
+
+},
+{
+    influencerName: "streets.of.prayagraj",
+    followers:"500k",
+    followings:"5",
+  description:"English singer Perrie is part of the band Little Mix, although she’s also working on a solo album. She posts photos of her life, including travel and family, for her 19.4 million Instagram followers."
+    ,
+  image:"https://res.cloudinary.com/dalaqu8f9/image/upload/v1729577651/d2djpaxznmnxqj9dfghs.png",
+
+  price: 1800,
+  
+  country: "prayagraj, India",
+   instaUrl:"https://www.instagram.com/p/C-zBBOUP205/?igsh=YzAyMDM1MGJkZA%3D%3D",
+  youtubeUrl:"#"
+},
+{
+    influencerName: "from_prayagraj_",
+    followers:"104k",
+    followings:"97",
+  description:
+    "If you're into a clean, bright, and feel-good vibe, you gotta check out Aakriti Rana, one of the top Instagram influencers in India. She's a fashion blogger, model, and stylist who reviews everything from food to cosmetics to clothing. Plus, she posts dreamy travel snaps and has worked with big names like Colgate, Daniel Wellington, and Buds and Berries.",
+  image:
+    "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729577652/wsnx1tkad25iubbb8c8a.png",
+
+  price: 1000,
+  country: "Prayagraj, India",
+   instaUrl:"https://www.instagram.com/from_prayagraj_/?igsh=MWZwMWxvcTlzZTUyaA%3D%3D",
+  youtubeUrl:"#"
+},
+{
+    influencerName: "hi.prayagraj",
+    followers:"77k",
+    followings:"758",
+  description:
+    " This talented dancer from Dehradun, India, hit the spotlight by reaching the finals of Super Dancer 2. Now, he's one of those lit Instagram influencers India can't get enough of, and he's also an entrepreneur. His feed is packed with epic dance videos, TV moments, fashion content, and even his own unisex clothing line. Follow Akash for a serious dose of inspo and creativity! ",
+  image:
+    "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729577635/udwuh59olbp6vgy1o6cv.png",
+  price: 2000,
+  country:"Prayagraj, India",
+  instaUrl:"https://www.instagram.com/hi.prayagraj/?igsh=ZWpiZm0waWNoZTYy",
+  youtubeUrl:"#"
+},
+{
+    influencerName: "prayagraj.vibes",
+    followers:"328k",
+    followings:"3490",
+  description:
+    "a fashion and beauty content creator and travel blogger who's been taking the social media world by storm since 2013. Her OOTDs and fashion tutorials are beloved by her followers, who appreciate her easy-to-understand style. But Kritika isn't just a social media influencer, she's also a sought-after collaborator for international brands. She's worked with Tarte, Cream Belle, L'Oreal, Tim Hortons, and many more, making her a true fashion and beauty expert.",
+  image:
+    "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729577636/t8ltsie2vnpnffkcij9l.png",
+
+  price: 800,
+ 
+  country: "India, prayagraj",
+   instaUrl:"https://www.instagram.com/prayagraj.vibes/?igsh=Y2gyNWVxeHQ4ZWZ4",
+  youtubeUrl:"#"
+},
+{
+    influencerName: "prayagraj_vlogs",
+    followers:"108k",
+    followings:"228",
+  description:
+    "He's one of the most influential voices on Instagram and YouTube, thanks to his in-depth and easy-to-understand takes on everything from smartphones to smartwatches to laptops. On his page, Gaurav gives his followers sneak peeks of his upcoming YouTube videos and shares his latest gadget recommendations. And with collaborations with top brands like Apple, Samsung, and Snapdragon, Gaurav's opinions are highly respected in the tech world. ",
+  image:
+    "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729577636/qph3dpacpx8pbjikwdbv.png",
+
+  price: 2000,
+ 
+  country: "prayagraj, India",
+    instaUrl:"https://www.instagram.com/prayagraj_vlogs/?igsh=d3N2aHIyZmhhOWJo",
+  youtubeUrl:"#"
+},  
+  {
         influencerName: "Carryminati",
         followers:"20.8M",
         followings:"20",
@@ -11,6 +98,9 @@ const sampleListings2 = [
       price: 150000,
       
       country: "India",
+      instaUrl:"https://www.instagram.com/carryminati/",
+      youtubeUrl:"https://www.youtube.com/channel/UCj22tfcQrWG7EMEKS0qLeEg"
+
     },
     {
         influencerName: "Perrie Edwards",
@@ -24,9 +114,11 @@ const sampleListings2 = [
       price: 120000,
       
       country: "United States",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: "Aakriti Rana ",
+        influencerName: "Aakriti Rana",
         followers:"1.0M",
         followings:"00",
       description:
@@ -36,6 +128,8 @@ const sampleListings2 = [
   
       price: 10000,
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
         influencerName: "Akash Thapa",
@@ -47,9 +141,11 @@ const sampleListings2 = [
         "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729436557/jekhrbsplbbemeynromf.png",
       price: 25000,
       country: "Italy",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: " Kritika Khurana Chhabra ",
+        influencerName: " Kritika Khurana Chhabra",
         followers:"1.9M",
         followings:"1",
       description:
@@ -60,9 +156,11 @@ const sampleListings2 = [
       price: 80000,
      
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: " Gaurav Chaudhary ",
+        influencerName: " Gaurav Chaudhary",
         followers:"6M",
         followings:"50",
       description:
@@ -73,9 +171,11 @@ const sampleListings2 = [
       price: 200000,
      
       country: "Dubai",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: "Namrata Purohit ",
+        influencerName: "Namrata Purohit",
         followers:"800k",
         followings:"90k",
       description:
@@ -84,9 +184,11 @@ const sampleListings2 = [
         "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729437206/ikcdvdvtkgasqltrancd.png",
       price: 90000,
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: " Dolly Singh ",
+        influencerName: " Dolly Singh",
         followers:"1.6M",
         followings:"94",
       description:
@@ -96,9 +198,11 @@ const sampleListings2 = [
   
       price: 3500,
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: "Gurpreet Singh ",
+        influencerName: "Gurpreet Singh",
         followers:"142k",
         followings:"10",
       description:
@@ -108,9 +212,11 @@ const sampleListings2 = [
   
       price: 3000,
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: "Saransh Goila ",
+        influencerName: "Saransh Goila",
         followers:"1.3M",
         followings:"9",
       description:
@@ -119,9 +225,11 @@ const sampleListings2 = [
         "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729437640/qydv7mxlvhvpevfrnmwc.png",
       price: 40000,
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: "Aaditya D. Sawant ",
+        influencerName: "Aaditya D. Sawant",
         followers:"2.0M",
         followings:"10",
       description:
@@ -132,9 +240,11 @@ const sampleListings2 = [
       price: 18000,
     
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: "Varun Aditya ",
+        influencerName: "Varun Aditya",
         followers:"3.5M",
         followings:"9",
       description:
@@ -145,9 +255,11 @@ const sampleListings2 = [
       price: 100000,
      
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: "Riyaz Aly ",
+        influencerName: "Riyaz Aly",
         followers:"27.8M",
         followings:"0",
       description:
@@ -158,6 +270,8 @@ const sampleListings2 = [
       price: 120000,
       
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
         influencerName: "Ashish Chanchalani",
@@ -170,9 +284,11 @@ const sampleListings2 = [
       price: 2200,
       location: "Boston",
       country: "United States",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
-        influencerName: "Rohit Zinjurke ",
+        influencerName: "Rohit Zinjurke",
         followers:"28.4M",
         followings:"10",
       description:
@@ -183,6 +299,8 @@ const sampleListings2 = [
       price: 18000,
       
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
         influencerName: "Kusha Kapila",
@@ -196,6 +314,8 @@ const sampleListings2 = [
       price: 1500,
     
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
         influencerName: "Justsul",
@@ -208,6 +328,8 @@ const sampleListings2 = [
   
       price: 16000,
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
     {
         influencerName: "Niharika NM",
@@ -221,6 +343,8 @@ const sampleListings2 = [
       price: 30000,
       
       country: "India",
+          instaUrl:"#",
+          youtubeUrl:"#"
     },
    
   ];

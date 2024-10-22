@@ -19,9 +19,9 @@ const listing2Schema = new Schema({
   },
   image: {
     type: String,
-    default: "https://wallpaperaccess.com/full/2567087.jpg",
+    default: "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729528899/bsuadcjpeo7qnyuqqbzo.png",
     set: (v) =>
-      v === "" ? " https://wallpaperaccess.com/full/2567087.jpg" : v,
+      v === "" ? " https://res.cloudinary.com/dalaqu8f9/image/upload/v1729528899/bsuadcjpeo7qnyuqqbzo.png" : v,
   },
 
   
@@ -30,6 +30,12 @@ const listing2Schema = new Schema({
   },
 
   country: {
+    type: String,
+  },
+  instaUrl: {
+    type: String,
+  },
+  youtubeUrl: {
     type: String,
   },
   reviews: [

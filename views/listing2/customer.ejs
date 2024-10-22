@@ -1,0 +1,90 @@
+<% layout('/layouts/boilerplate2') -%>
+
+<body>
+  <form method="post" class="needs-validation" novalidate action="/listing2/respose"
+    <div class="row">
+      <div class="col col-8 offset-2">
+        <h3>User details</h3>
+
+        <div class="mb-3">
+          <label for="influencerName" class="form-label">Name</label>
+          <input
+            type="text"
+            placeholder="Enter Your name"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Name looks good!</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="followers" class="form-label">Mobile No.</label>
+          <input
+            type="text"
+            placeholder="Enter phone number"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="followings" class="form-label">Email ID</label>
+          <input
+            type="text"
+            placeholder="Enter Email ID"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please enter a short description</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Image Link</label>
+          <input
+            type="text"
+            placeholder="Enter image URL"
+            class="form-control"
+          />
+          <div class="invalid-feedback">Please enter a valid image link</div>
+        </div>
+
+       
+
+          <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Location</label>
+            <input
+              type="text"
+              placeholder="India"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Location should be valid</div>
+            
+          </div>
+        </div>
+       
+      <div class="mb-3 col-md-8">
+        <label for="Instagram Url" class="form-label">Any social media Url</label>
+        <input
+          type="text"
+          placeholder="Enter your social media Url"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Url should be valid</div>
+  </div>
+
+        <button class="btn btn-dark new-btn">Add</button>
+      </div>
+    </div>
+  </form>
+  <br /><br />
+</body>

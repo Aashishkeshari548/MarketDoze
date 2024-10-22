@@ -11,6 +11,7 @@ const mongoUrl = "mongodb://127.0.0.1:27017/marketdoze";
 const wrapAsync = require("./utils/wrapAsync");
 // const { listingSchema } = require("./schema.js");
 const Review = require("./models/review.js");
+const Review2 = require("./models/review2.js");
 const session = require("express-session");
 // const listings= require("./Routes/listing.js");
 //  const reviews= require("./Routes/review.js");
@@ -69,6 +70,7 @@ app.get("/", (req, res) => {
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
@@ -81,6 +83,14 @@ app.use((req, res, next) => {
 
   next();
 });
+app.get(
+  "/listing2/new",
+  wrapAsync(async (req, res) => {
+    res.render("listing2/new2.ejs");
+  })
+);
+
+
 //_______User signup__________________________________________________________________
 
 app.use("/", userRouter);
@@ -93,6 +103,14 @@ app.get(
     res.render("listings/index.ejs", { allListing });
   })
 );
+// request for advertisement______________________________listing2
+app.get(
+  "/listing2/request",
+  wrapAsync(async (req, res) => {
+    res.render("listing2/customer.ejs");
+  })
+);
+
 // Listing2_______________________________________________________________________________________________________________________
 app.get(
   "/listing2",
@@ -116,6 +134,60 @@ app.get(
       res.render("listing2/show2.ejs", { listing });
     })
   );
+  // new Routes_________//upper likha hua hai yhi cheez line 96
+// app.get(
+//   "/listing2/new",
+//   wrapAsync(async (req, res) => {
+//     res.render("listing2/new2.ejs");
+//   })
+// );
+
+// create Routes________
+app.post(
+  "/listing2",
+  
+
+  wrapAsync(async (req, res, next) => {
+    const newListing = new Listing2(req.body.listing2);
+    console.log(req.body.listing2);
+    
+    await newListing.save();
+    req.flash("success", "Created new listng");
+    res.redirect("/listing2");
+  })
+);
+// show search influencer____________________________________________
+
+app.post("/listing2/showInfluencer",isLoggedIn, async (req, res, next) => {
+  try {
+    console.log("Request Body:", req.body);  // Inspect the request body
+
+    const { influencerName } = req.body;  // Match the field name correctly
+    console.log("Received Influencer Name:", influencerName);
+
+    const listing = await Listing2.findOne({ influencerName:influencerName });  // Query using correct field
+    console.log("Found Listings:", listing);
+
+    if (listing.length === 0) {
+      return res.status(404).send("No influencer found with the given name.");
+    }
+    res.render("listing2/show2.ejs", { listing });
+  } catch (error) {
+    console.error("Error fetching listings:", error);
+    next(error);  // Pass the error to error-handling middleware
+  }
+});
+
+// // request for advertisement______________________________106
+
+// app.get(
+//   "/listing2/request",
+
+//   wrapAsync(async (req, res) => {
+//     res.render("listing2/customer2.ejs");
+//   })
+// );
+  // _______________________________________________
 
 // new Routes_________
 app.get(
@@ -140,6 +212,44 @@ app.post(
     res.redirect("/listings");
   })
 );
+// showserchHouseOwner______________________
+app.post("/listings/showHouseOwers", async (req, res, next) => {
+  try {
+    console.log("Request Body:", req.body);  // Inspect the request body
+
+    const { location } = req.body;  // Match the field name correctly
+    console.log("Received Influencer Name:", location);
+
+    const listing = await Listing.findOne({ location:location });  // Query using correct field
+    console.log("Found Listings:", listing);
+
+    if (listing.length === 0) {
+      return res.status(404).send("No influencer found with the given name.");
+    }
+    res.render("listings/show.ejs", { listing });
+  } catch (error) {
+    console.error("Error fetching listings:", error);
+    next(error);  // Pass the error to error-handling middleware
+  }
+});
+// __________respose for customer
+app.post(
+  "/listing2/respose",
+  wrapAsync(async (req, res, next) => {
+  res.render("listing2/resposeForCustomer.ejs")
+  })
+);
+// resposeForContactUs______
+app.post(
+  "/Home/contactUS",
+  wrapAsync(async (req, res, next) => {
+  res.render("Home/responseForHomePage.ejs")
+  })
+);
+
+
+// ___________________________________________________________________________________________________________________________________________________
+
 // show Routs________________
 app.get(
   "/listings/:id",
@@ -244,6 +354,27 @@ app.delete(
     req.flash("success", "Deleted review");
 
     res.redirect(`/listings/${id}`);
+  })
+);
+
+// listing2 reviews____________________
+app.post(
+  "/listing2/:id/review2",
+  validateReview,
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+
+    const listing = await Listing2.findById(req.params.id);
+    let newReview = new Review2(req.body.review);
+    listing.review2.push(newReview);
+    await newReview.save();
+    await listing.save();
+    console.log("new review save");
+    // res.redirect(`/listings/${listing._id}`);
+    req.flash("success", "Created new review");
+
+    res.redirect(`/listing2/${id}`);
   })
 );
 

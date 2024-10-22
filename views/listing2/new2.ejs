@@ -1,0 +1,119 @@
+<% layout('/layouts/boilerplate2') -%>
+
+<body>
+  <form method="POST" class="needs-validation" novalidate action="/listing2">
+    <br /><br />
+    <div class="row">
+      <div class="col col-8 offset-2">
+        <h3>Create a Listing</h3>
+
+        <div class="mb-3">
+          <label for="influencerName" class="form-label">Name</label>
+          <input
+            type="text"
+            name="listing2[influencerName]"
+            placeholder="Enter influencer name"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Name looks good!</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="followers" class="form-label">Followers</label>
+          <input
+            type="text"
+            name="listing2[followers]"
+            placeholder="Enter number of followers"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="followings" class="form-label">Followings</label>
+          <input
+            type="text"
+            name="listing2[followings]"  
+            placeholder="Enter number of followings"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            name="listing2[description]"
+            class="form-control"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please enter a short description</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Image Link</label>
+          <input
+            type="text"
+            name="listing2[image]"
+            placeholder="Enter image URL"
+            class="form-control"
+          />
+          <div class="invalid-feedback">Please enter a valid image link</div>
+        </div>
+
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Take Charge</label>
+            <input
+              type="text"
+              name="listing2[price]"
+              placeholder="1200"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Price should be valid</div>
+          </div>
+
+          <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input
+              type="text"
+              name="listing2[country]"
+              placeholder="India"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Country should be valid</div>
+            
+          </div>
+        </div>
+        <div class="mb-3 col-md-8">
+            <label for="Instagram Url" class="form-label">Instagram Url</label>
+            <input
+              type="text"
+              name="listing2[instaUrl]"
+              placeholder="Instagram Url"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Instagram Url should be valid</div>
+      </div>
+      <div class="mb-3 col-md-8">
+        <label for="Instagram Url" class="form-label">Youtube Url</label>
+        <input
+          type="text"
+          name="listing2[youtubeUrl]"
+          placeholder="Youtube Url"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback"> Youtube Url should be valid</div>
+  </div>
+
+        <button class="btn btn-dark new-btn">Add</button>
+      </div>
+    </div>
+  </form>
+  <br /><br />
+</body>

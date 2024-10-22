@@ -7,10 +7,11 @@
     <a class="navbar-brand mb-3" href="#">
      MARKET DOZE</a>
    <!-- ________________________ -->
-   <form     class="d-flex mt-1 col-5 offset-3" role="search">
+   <form     method="post" action="listings/showHouseOwers" class="d-flex mt-1 col-5 offset-3" role="search">
     <input
       class="form-control me-2"
       type="search"
+      name="location"
       placeholder="Enter Location"
       aria-label="Search"
     />
@@ -47,10 +48,10 @@
             <a class="nav-link active" aria-current="page" href="/Home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/listings">All Listings</a>
+            <a class="nav-link" href="/listings">All House_Owners</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/listings/new">Add new Listing</a>
+            <a class="nav-link" href="/listings/new">Add new House</a>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -67,14 +68,14 @@
 
               <li>
                 <a class="dropdown-item" href="/signup"
-                  >signup for House_Owners</a
+                  >signup for House_Owners </a
                 >
               </li>
               <li>
                 <a class="dropdown-item" href="/login"
                   >login for House_Owners</a
                 >
-              </li>
+              </li> 
               <%} %>
 
               <li>
@@ -93,6 +94,6 @@
        
       </div>
     </div>
-  </div>
+  </div> 
 </nav>
 <!-- _______________________________________________________ -->

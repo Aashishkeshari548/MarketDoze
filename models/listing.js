@@ -12,9 +12,9 @@ const listingSchema = new Schema({
   },
   image: {
     type: String,
-    default: "https://wallpaperaccess.com/full/2567087.jpg",
+    default: "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729581782/acvlzdloqrjsldqm1htv.png",
     set: (v) =>
-      v === "" ? " https://wallpaperaccess.com/full/2567087.jpg" : v,
+      v === "" ? "https://res.cloudinary.com/dalaqu8f9/image/upload/v1729581782/acvlzdloqrjsldqm1htv.png" : v,
   },
 
   
