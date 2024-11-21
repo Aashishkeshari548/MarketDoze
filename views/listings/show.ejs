@@ -6,13 +6,14 @@
       <h3><b><%=listing.title%></b></h3>
     </div>
     <div class="card col-6 offset-3 show-card listing-card">
-      <img
+      <img 
         src="<%=listing.image%>"
         class="card-img-top show-image"
         alt="Listing_image"
       />
       <div class="card-body">
-      <p> <p class="card-text">
+      <p> <p class="card-text"> Onwer By : <i><%=listing.owner.username%></i></p> 
+
         </p> 
          <p><%=listing.description%> </p> 
          <p> &#8377;<%=listing.price.toLocaleString("en-IN")%> </p>
@@ -23,20 +24,34 @@
     </div>
     <br />
   <!-- _________________________after enhance we are using listing2 -->
+   <%if(currUser && currUser._id.equals(listing.owner._id)){%>
     <div class="btns">
       <a
-        href="/listing2/request"
-         class="btn btn-dark offset-3 edit-btn">Request for Booking
+        href="/listings/<%=listing._id%>/edit"
+        class="btn btn-dark offset-3 edit-btn"
+        >Edit
       </a>
       <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-        <!-- <button class="btn btn-dark offset-5">Delete</button> -->
+        <button class="btn btn-dark offset-5">Delete</button>
       </form>
     </div>
-  
+  <%}%> 
+ <div><br>
+  <div class="btns">
+    
+      <a 
+        href="/listing2/request"
+        class="btn btn-dark offset-3 edit-btn">
+        
+          Request for Booking
+      </a>
+   </div>
+  </div>
   
     <div class="col-8 offset-3 mb-3">
       <br />
       <hr />
+      <%if(currUser){%>
       <h4>Leave a review</h4>
       <form
         method="POST"
@@ -65,13 +80,14 @@
         </div>
         <button class="btn btn-outline-dark">Sumbit</button>
       </form>
-      <hr />
+      <%}%>
+      
       <div class="row">
         <p><b>All Reviews</b></p>
         <%for(review of listing.reviews){%>
         <div class="card col-6 ms-3 mb-3">
           <div class="card-body">
-            <h5 class="card-title">jane doe</h5>
+            <h5 class="card-title"><%=review.author.username%></h5>
             <p class="card-text"><%=review.comment%></p>
             <p class="card-text"><%=review.rating%>stars</p>
             <form method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">

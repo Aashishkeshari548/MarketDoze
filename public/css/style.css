@@ -59,6 +59,9 @@ a .img-Navbar{
   align-items: space-evenly;
 }
 /* CARD_______________ */
+.showCard{
+/* height:250px !important; */
+}
 .listing-card {
   border: none !important;
   margin-bottom: 2rem;
@@ -420,3 +423,6 @@ border-radius: 20px; ;
    margin-left: 0;
  }
 }
+
+/* show border__________________________ */
+

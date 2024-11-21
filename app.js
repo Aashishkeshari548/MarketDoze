@@ -19,10 +19,10 @@ var flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-const influencer = require("./models/influencer.js");
+// const influencer = require("./models/influencer.js");
 
 const userRouter = require("./Routes/user.js");
-const influencerRouter = require("./Routes/influencer.js");
+// const influencerRouter = require("./Routes/influencer.js");
 const expressError = require("./utils/expressError.js");
 
 const {
@@ -30,6 +30,7 @@ const {
   isOwner,
   validatelisting,
   validateReview,
+  isReviewAuthor
 } = require("./middleware.js");
 
 const sessonOptions = {
@@ -49,9 +50,9 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-passport.use(new LocalStrategy(influencer.authenticate()));
-passport.serializeUser(influencer.serializeUser());
-passport.deserializeUser(influencer.deserializeUser());
+// passport.use(new LocalStrategy(influencer.authenticate()));
+// passport.serializeUser(influencer.serializeUser());
+// passport.deserializeUser(influencer.deserializeUser());
 
 main()
   .then((res) => {
@@ -85,16 +86,16 @@ app.use((req, res, next) => {
 });
 app.get(
   "/listing2/new",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     res.render("listing2/new2.ejs");
   })
 );
 
-
 //_______User signup__________________________________________________________________
 
 app.use("/", userRouter);
-app.use("/", influencerRouter);
+// app.use("/", influencerRouter);
 
 app.get(
   "/listings",
@@ -112,29 +113,27 @@ app.get(
 );
 
 // Listing2_______________________________________________________________________________________________________________________
+app.get("/listing2", async (req, res) => {
+  const allListing2 = await Listing2.find({});
+  res.render("listing2/index2.ejs", { allListing2 });
+});
+// show routes______
 app.get(
-  "/listing2",
-  async(req, res) => {
-    const allListing2 = await Listing2.find({});
-    res.render("listing2/index2.ejs", { allListing2 });
-  });
-  // show routes______
-  app.get(
-    "/listing2/:id",
-    wrapAsync(async (req, res) => {
-      const { id } = req.params;
-      const listing = await Listing2.findById(id)
-        .populate("reviews")
-        .populate("owner");
-      if (!listing) {
-        req.flash("error", "Listing you request does not exist");
-        res.redirect("/listing2");
-      }
-      console.log(listing);
-      res.render("listing2/show2.ejs", { listing });
-    })
-  );
-  // new Routes_________//upper likha hua hai yhi cheez line 96
+  "/listing2/:id",
+  wrapAsync(async (req, res) => { 
+    const { id } = req.params;
+    const listing = await Listing.findById(id)
+      .populate({ path: "reviews", populate: { path: "author" } })
+      .populate("owner");
+    if (!listing) {
+      req.flash("error", "Listing you request does not exist");
+      res.redirect("/listing2");
+    }
+    console.log(listing);
+    res.render("listing2/show2.ejs", { listing });
+  })
+);
+// new Routes_________//upper likha hua hai yhi cheez line 96
 // app.get(
 //   "/listing2/new",
 //   wrapAsync(async (req, res) => {
@@ -142,30 +141,29 @@ app.get(
 //   })
 // );
 
-// create Routes________
+// create Routes________lis
 app.post(
   "/listing2",
-  
 
   wrapAsync(async (req, res, next) => {
     const newListing = new Listing2(req.body.listing2);
     console.log(req.body.listing2);
-    
+
     await newListing.save();
-    req.flash("success", "Created new listng");
+    req.flash("success", "Created new influencer");
     res.redirect("/listing2");
   })
 );
 // show search influencer____________________________________________
 
-app.post("/listing2/showInfluencer",isLoggedIn, async (req, res, next) => {
+app.post("/listing2/showInfluencer", async (req, res, next) => {
   try {
-    console.log("Request Body:", req.body);  // Inspect the request body
+    console.log("Request Body:", req.body); // Inspect the request body
 
-    const { influencerName } = req.body;  // Match the field name correctly
+    const { influencerName } = req.body; // Match the field name correctly
     console.log("Received Influencer Name:", influencerName);
 
-    const listing = await Listing2.findOne({ influencerName:influencerName });  // Query using correct field
+    const listing = await Listing2.findOne({ influencerName: influencerName }); // Query using correct field
     console.log("Found Listings:", listing);
 
     if (listing.length === 0) {
@@ -174,7 +172,7 @@ app.post("/listing2/showInfluencer",isLoggedIn, async (req, res, next) => {
     res.render("listing2/show2.ejs", { listing });
   } catch (error) {
     console.error("Error fetching listings:", error);
-    next(error);  // Pass the error to error-handling middleware
+    next(error); // Pass the error to error-handling middleware
   }
 });
 
@@ -187,7 +185,7 @@ app.post("/listing2/showInfluencer",isLoggedIn, async (req, res, next) => {
 //     res.render("listing2/customer2.ejs");
 //   })
 // );
-  // _______________________________________________
+// _______________________________________________
 
 // new Routes_________
 app.get(
@@ -206,7 +204,7 @@ app.post(
   wrapAsync(async (req, res, next) => {
     const newListing = new Listing(req.body.listing);
     console.log(req.body.listing);
-    newListing.owner = req.user._id;
+    newListing.owner = req.user._id; // login user ko nye listing me ower ke rupe me add karane ke liye
     await newListing.save();
     req.flash("success", "Created new listng");
     res.redirect("/listings");
@@ -215,12 +213,12 @@ app.post(
 // showserchHouseOwner______________________
 app.post("/listings/showHouseOwers", async (req, res, next) => {
   try {
-    console.log("Request Body:", req.body);  // Inspect the request body
+    console.log("Request Body:", req.body); // Inspect the request body
 
-    const { location } = req.body;  // Match the field name correctly
+    const { location } = req.body; // Match the field name correctly
     console.log("Received Influencer Name:", location);
 
-    const listing = await Listing.findOne({ location:location });  // Query using correct field
+    const listing = await Listing.findOne({ location: location }); // Query using correct field
     console.log("Found Listings:", listing);
 
     if (listing.length === 0) {
@@ -229,24 +227,23 @@ app.post("/listings/showHouseOwers", async (req, res, next) => {
     res.render("listings/show.ejs", { listing });
   } catch (error) {
     console.error("Error fetching listings:", error);
-    next(error);  // Pass the error to error-handling middleware
+    next(error); // Pass the error to error-handling middleware
   }
 });
 // __________respose for customer
 app.post(
   "/listing2/respose",
   wrapAsync(async (req, res, next) => {
-  res.render("listing2/resposeForCustomer.ejs")
+    res.render("listing2/resposeForCustomer.ejs");
   })
 );
 // resposeForContactUs______
 app.post(
   "/Home/contactUS",
   wrapAsync(async (req, res, next) => {
-  res.render("Home/responseForHomePage.ejs")
+    res.render("Home/responseForHomePage.ejs");
   })
 );
-
 
 // ___________________________________________________________________________________________________________________________________________________
 
@@ -256,8 +253,8 @@ app.get(
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id)
-      .populate("reviews")
-      .populate("owner");
+    .populate({ path: "reviews", populate: { path: "author" } })
+    .populate("owner");//nested populate reviews se auther ki information nikalne ke liye 
     if (!listing) {
       req.flash("error", "Listing you request does not exist");
       res.redirect("/listings");
@@ -323,13 +320,15 @@ app.get("/Home", async (req, res) => {
 
 app.post(
   "/listings/:id/reviews",
+  isLoggedIn,
   validateReview,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     console.log(id);
-
     const listing = await Listing.findById(req.params.id);
-    let newReview = new Review(req.body.review);
+    let newReview = new Review(req.body.review);  
+    newReview.author = req.user.id;// rewiew dene wale ki id
+    console.log(newReview);
     listing.reviews.push(newReview);
     await newReview.save();
     await listing.save();
@@ -343,7 +342,7 @@ app.post(
 
 //delete review routes
 app.delete(
-  "/listings/:id/reviews/:reviewId",
+  "/listings/:id/reviews/:reviewId",isLoggedIn,isReviewAuthor,
   wrapAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     const listing = await Listing.findByIdAndUpdate(id, {
